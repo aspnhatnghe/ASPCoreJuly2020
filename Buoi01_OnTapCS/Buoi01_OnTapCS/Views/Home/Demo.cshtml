@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Demo";
+}
+
+<h1>Demo</h1>
+<h2>Demo View for @ViewBag.ViewName</h2>
+@{ 
+    //comment nè
+    int namSinh = 1979;
+    string hoTen = "Nhất Nghệ Tinh";
+    var chuoi = $"{hoTen} sinh năm {namSinh}.";
+    string xyz = hoTen + " sinh năm " + namSinh;
+    dynamic x = 9.1;
+    var y = namSinh + hoTen;
+    x = "Hello";
+}
+
+<div>@chuoi</div>
+@*<div>C# comment</div>*@
+
+<!-- HTML comment -->

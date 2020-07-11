@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@{
+    var date = DateTime.Now;
+    int thang = date.Month;
+    int nam = date.Year;
+
+    bool laNamNhuan = false;
+    if (nam % 400 == 0)
+    {
+        laNamNhuan = true;
+    }
+    else if (nam % 4 == 0 && nam % 100 != 0)
+    {
+        laNamNhuan = true;
+    }
+
+    int soNgay = 28;
+    switch (thang)
+    {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            soNgay = 31; break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            soNgay = 30; break;
+    }
+
+    var ngayCuoiT2 = new DateTime(2100, 3, 1).AddDays(-1);
+}
+<div>Tháng @thang/@nam có @soNgay ngày.</div>
+@if (laNamNhuan)
+{
+    var xa = 1;
+    <div>@nam là năm nhuận</div>
+}
+else
+{
+    <div>@nam là năm không nhuận</div>
+}
+<h3>Ngày cuối tháng 2/2100: @ngayCuoiT2</h3>
+
+@{
+    var rd = new Random();
+    var mang = new List<int>();
+}
+@for (int i = 0; i < 6; i++)
+{
+    int so = rd.Next(1, 56);
+    mang.Add(so);
+    <span class="text-danger border m-1">
+        @so.ToString("00")
+    </span>
+}
+@{ 
+    mang.Sort();
+}
+@foreach(var phanTu in mang)
+{
+    <div>@phanTu.ToString("00")</div>
+}
