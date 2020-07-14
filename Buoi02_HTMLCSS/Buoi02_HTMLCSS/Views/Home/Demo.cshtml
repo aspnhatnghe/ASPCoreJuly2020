@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Demo";
+}
+
+<h1>Demo</h1>
+<form asp-action="ProcessDemo" asp-controller="Home">
+    Tên: <input name="HoTen" /><br />
+    Quê:
+    <select name="QueQuan">
+        <option value="HN">Hà Nội</option>
+        <option value="SG">Sài Gòn</option>
+        <option value="CT">Cần Thơ</option>
+        <option value="NT">Nha Trang</option>
+    </select>
+    Giới tính:
+    <input name="GioiTinh" type="radio" value="1" />Nữ
+    <input name="GioiTinh" type="radio" value="0" />Nam
+    <br />
+    Ngoại ngữ:
+    <input name="NgoaiNgu" type="checkbox" value="AV" />Anh
+    <input name="NgoaiNgu" type="checkbox" value="PV" />Pháp
+    <input name="NgoaiNgu" type="checkbox" value="NV" />Nga
+    <input name="NgoaiNgu" type="checkbox" value="HV" />Hoa
+    <br />
+    <button>Gửi</button>
+</form>
+
