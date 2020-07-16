@@ -1,0 +1,34 @@
+﻿.hh-box{
+    border:1px solid blue; position:relative;
+    width: 220px; height:300px; text-align:center;
+    display:inline-block;
+    margin: 35px 5px 5px 5px;
+}
+.saleoff{
+    background-image:url('../images/saleoff.png');
+    width:52px;height:44px;
+}
+.hh-name {
+    position: absolute;
+    top: -30px;
+    left: 0px;
+    font-weight: bolder;
+    font-size: x-large;
+    color: magenta; /*background-color:cyan;*/
+    width: inherit;
+}
+.hh-actions{
+    position:absolute;right:5px; bottom:5px;
+    width:30px;
+}
+.hh-price{position:absolute; left:10px; bottom:10px;font-size:larger;color:green;}
+.hh-icon{
+    position:absolute; top:0; right:0; width:80px;
+}
+.hh-image{
+    width:80%; margin-top:10px;
+}
+
+.hh-box:hover{
+    box-shadow: 0 0 15px red; border-radius:10px;
+}

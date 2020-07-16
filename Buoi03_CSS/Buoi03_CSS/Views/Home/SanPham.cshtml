@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Buoi03_CSS.Models.HangHoa>
+
+@{
+    ViewData["Title"] = "SanPham";
+}
+
+<link href="~/css/HangHoa.css" rel="stylesheet" />
+
+@foreach (var hh in Model)
+{
+    <!--Begin Hang Hoa-->
+    <div class="hh-box">
+        <img src="~/HangHoa/iphone-x-256gb-gray.jpg" class="hh-image" />
+        <img class="hh-icon" src="images/moi-icon.png" />
+        <div class="hh-actions">
+            <img src="images/Basket.png" />
+            <img src="images/favourites.png" />
+            <img src="images/Letter.png" />
+        </div>
+        <div class="hh-price">@hh.GiaBan</div>
+        <div class="hh-name">@hh.TenHH</div>
+        @if (hh.DangGiamGia)
+        {
+            <div class="saleoff"></div>
+        }
+    </div>
+    <!--End Hang Hoa-->
+}

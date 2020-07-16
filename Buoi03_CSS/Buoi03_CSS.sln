@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buoi03_CSS", "Buoi03_CSS\Buoi03_CSS.csproj", "{B1B8FACE-88B1-491B-8EE8-E3EFFB55CAAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1B8FACE-88B1-491B-8EE8-E3EFFB55CAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1B8FACE-88B1-491B-8EE8-E3EFFB55CAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1B8FACE-88B1-491B-8EE8-E3EFFB55CAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1B8FACE-88B1-491B-8EE8-E3EFFB55CAAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAC8AE09-847E-4853-ADE8-3A61F6B01E6E}
+	EndGlobalSection
+EndGlobal
