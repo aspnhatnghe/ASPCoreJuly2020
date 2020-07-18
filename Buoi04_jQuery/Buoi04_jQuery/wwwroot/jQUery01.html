@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script>
+        console.log(5 == 5);
+        console.log(5 + 5);
+        console.log("Hello");
+
+        $(document).ready(function () {
+            console.log("Finish render HTML");
+            //Gắn sự kiện hơ chuột lên thẻ h1
+            $("h1").hover(function () {
+                $(this).css({
+                    "color": "red"
+                });
+            });
+
+            $("h1").mouseout(function () {
+                console.log('Mouse out');
+                $(this).css({
+                    "color": "blue"
+                });
+
+                $(this).hide(2000);
+            });
+
+            $("h1").each(function (idx, ele) {
+                console.log('Phần tử thứ ' + idx);
+                console.log(ele);
+                if (ele.innerHTML == "HTML") {
+                    //break; 
+                }
+            });
+
+            $("button").click(function (e) {
+                //bỏ sự kiện default
+                e.preventDefault();
+                let width = $("#ketqua").attr("width");
+                $("#ketqua").append(width);
+                let xyz = $("#ketqua").data("xyz");
+                let xyz1 = $("#ketqua").attr("data-xyz");
+                $("#ketqua").append(xyz);
+                $("#ketqua").append(xyz1);
+            });
+        });//end ready        
+    </script>
+</head>
+<body>
+    <form><button>Demo</button></form>
+    <div id="ketqua" data-xyz="a" width="100"></div>
+    <h1>HTML</h1>
+    <h1>CSS</h1>
+    <h1>jQuery</h1>
+    <h1>BootStrap</h1>
+</body>
+</html>

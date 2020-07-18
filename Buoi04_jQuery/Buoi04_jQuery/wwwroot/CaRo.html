@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <style>
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px dotted red;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: aqua;
+        }
+
+        td:nth-child(odd) {
+            background-color: goldenrod;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#Show").click(function () {
+                $("#BanCo").show(3500);
+            });
+            $("#Hide").click(function () {
+                $("#BanCo").hide(3500);
+            });
+            $("#Toggle").click(function () {
+                $("#BanCo").toggle(3500);
+            });
+
+            var gt = "X";
+            $("td").click(function () {
+                if ($(this).html() == "") {
+                    $(this).html(gt);
+                    gt = (gt == "X") ? "O" : "X";
+                }
+            });
+
+            $("#Reset").click(function () {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Bạn có muốn rest hay không?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xóa ngay',
+                    cancelButtonText: 'Không'
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            title: 'Reset thành công',
+                            icon: 'success'
+                        });
+                    }
+                });
+
+                //let traloi = confirm('Bạn có muốn rest hay không?');
+                //if (traloi) {
+                //    $("td").html("");
+                //    //alert('Reset thành công');
+                //    Swal.fire({
+                //        title: 'Good job!',
+                //        icon: 'success'
+                //    });
+                //}
+            });
+        });
+    </script>
+</head>
+<body>
+    <button type="button" id="Show">Show</button>
+    <button type="button" id="Hide">Hide</button>
+    <button type="button" id="Toggle">Toggle</button>
+    <button type="button" id="Reset">Reset</button>
+    <table id="BanCo">
+        <tr>
+            <td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td>
+        </tr>
+    </table>
+</body>
+</html>
