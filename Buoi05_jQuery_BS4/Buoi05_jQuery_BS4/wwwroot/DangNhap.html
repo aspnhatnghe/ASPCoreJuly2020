@@ -16,9 +16,34 @@
     </div>
     <button type="button" id="btnLogin">Đăng nhập</button>
     <br /><div id="ketqua"></div>
+    <style>
+        .loi{background-color:yellow; color:red;}
+    </style>
     <script>
+        function kiemtraNhapLieuRong(obj) {
+            let data = obj.val().trim();
+            obj.val(data);
+            if (data == "") {
+                obj.addClass("loi"); obj.focus();
+                return false;
+            }
+            obj.removeClass("loi");
+            return true;
+        }
         $(document).ready(function () {
-            $("#btnLogin").click(function () { });
+            $("#btnLogin").click(function () {
+                let user = $("#txtUser");
+                let pass = $("#txtPass");
+
+                //kiểm tra xem có nhập liệu hay chưa?
+                $("#ketqua").html('');
+                if (!kiemtraNhapLieuRong(user) || !kiemtraNhapLieuRong(pass)) {
+                    $("#ketqua").html("Chưa nhập thông tin");
+                    return false;
+                }
+
+                                
+            });//end click btnLogin
         });
     </script>
 </body>
