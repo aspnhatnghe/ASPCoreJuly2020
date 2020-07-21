@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!--CSS-->
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <style>
+        #root{
+            min-height:600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root" class="container-fluid">
+
+        <nav class="navbar navbar-expand-md bg-light navbar-light">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">Nhất  Nghệ</a>
+
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Sản phẩm
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Điện thoại</a>
+                            <a class="dropdown-item" href="#">Máy tính bảng</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 bg-danger">Col 1</div>
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2 bg-dark">Col 2</div>
+            <div class="col-6 col-md-4 col-lg-3 col-xl-3 bg-primary">Col 3</div>
+            <div class="col-6 col-md-4 col-lg-3 col-xl-3 bg-success">Col 4</div>
+        </div>
+
+        <div>
+            <button class="btn btn-danger">Danger</button>
+            <button class="btn btn-primary">Primary</button>
+            <a class="btn btn-success">LINK</a>
+        </div>
+
+        <div class="text-danger">Nguy hiểm quá</div>
+        <div class="text-primary">Nguy hiểm quá</div>
+
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                </tr>
+                <tr>
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                </tr>
+                <tr>
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active container" id="home">
+                HOME page
+            </div>
+            <div class="tab-pane container" id="menu1">
+                MENU 1
+            </div>
+            <div class="tab-pane container" id="menu2">
+                MENU 2
+            </div>
+        </div>
+    </div>
+    <!--Javascript-->
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>
