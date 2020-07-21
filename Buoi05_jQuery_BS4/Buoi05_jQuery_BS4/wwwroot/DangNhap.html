@@ -35,6 +35,15 @@
                 let user = $("#txtUser");
                 let pass = $("#txtPass");
 
+                if ($(this).html() == "Đăng xuất") {
+                    $(this).html("Đăng nhập");
+                    user.next().remove();
+                    pass.next().remove();
+                    user.show(); pass.show();
+                    user.val(''); pass.val('');
+                    return true;
+                }
+
                 //kiểm tra xem có nhập liệu hay chưa?
                 $("#ketqua").html('');
                 if (!kiemtraNhapLieuRong(user) || !kiemtraNhapLieuRong(pass)) {
@@ -42,6 +51,19 @@
                     return false;
                 }
 
+                //kiểm tra user/pass đúng ko??
+                if (user.val().length < 5 || pass.val().length < 5) {
+                    $("#ketqua").html("Sai thông tin đăng nhập");
+                    return false;
+                }
+
+                $("#ketqua").html("");
+                $(this).html("Đăng xuất");
+                user.hide();
+                pass.hide();
+                user.after("<span>" + user.val() + "</span>");
+                let lblPass = $("<span />").html(pass.val());
+                pass.after(lblPass);
                                 
             });//end click btnLogin
         });
