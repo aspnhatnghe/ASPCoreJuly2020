@@ -1,0 +1,12 @@
+﻿@using Buoi06_MVCBasic.Models;
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+@{ 
+    var now = DateTime.Now;
+    var veso = "XYZ".Vietlotte(true);
+}
+<div>Còn @now.ToiTet() ngày nữa tới Tết.</div>
+<div>@veso</div>

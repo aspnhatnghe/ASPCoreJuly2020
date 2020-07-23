@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+        <div>Đang có @HangHoa.Dem hàng hóa</div>
+        @{
+            HangHoa hh = new HangHoa()
+            {
+                TenHh = "Bia",
+                DonGia = 1080,
+                SoLuong = 11
+            };
+            <div>Đang có @HangHoa.Dem hàng hóa</div>
+
+            HangHoa hh1 = new HangHoa();
+            hh1.TenHh = "Nước ngọt";
+            hh1.DonGia = 100;
+            <div>Đang có @HangHoa.Dem hàng hóa</div>
+
+            var hh2 = new HangHoa("Mì", 500, 1);
+            <div>Đang có @HangHoa.Dem hàng hóa</div>
+            List<HangHoa> dsHangHoa = new List<HangHoa>();
+            dsHangHoa.Add(hh); dsHangHoa.Add(hh1);
+            dsHangHoa.Add(hh2);
+        }
+        @foreach (var item in dsHangHoa)
+        {
+            <h3>@item.TenHh - @item.DonGia - @item.SoLuong</h3>
+            <h4>@item.In()</h4>
+            <h4>@item</h4>
+            <h4>@item.ToString()</h4>
+        }
+
+        @if (hh.ConHang)
+        {
+            <div>Còn @hh.SoLuong @hh.TenHh</div>
+        }
+        else
+        {
+            <div>@hh.TenHh : Sắp hết hàng</div>
+        }
+    </div>
+
