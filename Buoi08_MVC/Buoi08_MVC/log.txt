@@ -1,0 +1,1 @@
+Unexpected character encountered while parsing number: s. Path 'DiemSo', line 1, position 68.Could not convert string to double: 7,s82. Path 'DiemSo', line 1, position 71.
