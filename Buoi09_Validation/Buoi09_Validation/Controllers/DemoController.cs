@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Buoi09_Validation.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.IO;
@@ -56,7 +57,30 @@ namespace Buoi09_Validation.Controllers
         [HttpPost]
         public IActionResult MultipleFile(List<IFormFile> myfile)
         {
+            foreach (var file in myfile)
+            {
+                MoveUploadedFile(file, new List<string> { "DataFiles", "Documents" });
+            }
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(EmployeeInfo emp)
+        {
+            if(ModelState.IsValid)
+            {
+                ModelState.AddModelError("loi", "Hết lỗi rồi");
+            }
+            else
+            {
+                ModelState.AddModelError("loi", "Vẫn còn lỗi");
+            }
+            return View();
         }
     }
 }
