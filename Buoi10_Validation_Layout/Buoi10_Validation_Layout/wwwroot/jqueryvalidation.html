@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/jquery-validation/dist/jquery.validate.js"></script>
+</head>
+<body>
+    <form action="/Home/Demo" id="myform">
+        Tên: <input name="HoTen" /><br />
+        Tuổi: <input name="Tuoi" /><br />
+        <button>Gửi</button>
+    </form>
+    <style>
+        .error{color:red;}
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#myform").validate({
+                rules: {
+                    HoTen: {
+                        required: true,
+                        minlength: 5
+                    },
+                    Tuoi: {
+                        required: true,
+                        digits: true,
+                        range: [16, 60]
+                    }
+                },
+                messages: {
+                    HoTen: {
+                        required:"*"
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

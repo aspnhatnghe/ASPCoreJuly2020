@@ -34,5 +34,10 @@ namespace Buoi10_Validation_Layout.Controllers
 
             return Json(true);
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
