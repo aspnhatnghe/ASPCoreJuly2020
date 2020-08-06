@@ -89,15 +89,30 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
     <script>
+        // ------ Định nghĩa thuộc tính kiểm tra ---
+        //Bước 1: Định nghĩa hàm kiểm tra
+        function KiemTraGmail(value, element) {
+            let pattern = /^[a-z]\w*@@gmail.com$/;
+            return this.optional(element) || pattern.test(value);
+        }
+        //Bước 2: Đăng ký vào bộ kiểm tra validator
+        $.validator.addMethod("gmail", KiemTraGmail, "Không đúng định dạng gmail");
+        // ------ end
+
         $(document).ready(function () {
             $("label[id$='-error']").css({ "color": "green" });
 
+            
             $("#FormDangKy").validate({
                 rules: {
                     MaSV: { required: true, minlength: 5 },
                     HoTen: { required: true },
                     NgaySinh: { date: true },
-                    Email: { required: true, email: true },
+                    Email: {
+                        required: true,
+                        //email: true,
+                        gmail: true
+                    },
                     XacNhanEmail: { equalTo: 'input[name="Email"]' },
                     SoTaiKhoan: { creditcard: true },
                     Hinh: {
