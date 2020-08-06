@@ -40,6 +40,12 @@
         </div>
     </div>
     <div class="row m-1">
+        <div class="col-4 col-md-3 text-right">Số điện thoại</div>
+        <div class="col-8 col-md-9">
+            <input name="SoDienThoai" placeholder="Số di động" class="w-100" />
+        </div>
+    </div>
+    <div class="row m-1">
         <div class="col-4 col-md-3 text-right">Số tài khoản</div>
         <div class="col-8 col-md-9">
             <input name="SoTaiKhoan" placeholder="Số tài khoản" class="w-100" />
@@ -67,7 +73,8 @@
         <div class="col-4 col-md-3 text-right">Mã bảo mật</div>
         <div class="col-8 col-md-9">
             <span></span>
-            <input name="MaBaoMat" placeholder="Mã bảo mật" class="w-100" />
+            <input name="MaBaoMat" placeholder="Mã bảo mật" class="w-75 security-code" />
+            <span class="text-danger">@ViewBag.RandomCode</span>
         </div>
     </div>
     <div class="row m-1">
@@ -95,16 +102,28 @@
             let pattern = /^[a-z]\w*@@gmail.com$/;
             return this.optional(element) || pattern.test(value);
         }
+        function KiemTraSoDienThoai(value, element) {
+            let pattern = /^(0[5789][0-9]{8}|02[5789][0-9]{8})$/g;
+            return this.optional(element) || pattern.test(value);
+        }
         //Bước 2: Đăng ký vào bộ kiểm tra validator
+        $.validator.addMethod("sodienthoai", KiemTraSoDienThoai, "Không đúng format số điện thoại");
         $.validator.addMethod("gmail", KiemTraGmail, "Không đúng định dạng gmail");
         // ------ end
 
         $(document).ready(function () {
             $("label[id$='-error']").css({ "color": "green" });
 
-            
+
             $("#FormDangKy").validate({
                 rules: {
+                    MaBaoMat: {
+                        required:true,
+                        remote: "/Employee/CheckSecurityCode"
+                    },
+                    SoDienThoai: {
+                        sodienthoai: true
+                    },
                     MaSV: { required: true, minlength: 5 },
                     HoTen: { required: true },
                     NgaySinh: { date: true },
@@ -128,6 +147,14 @@
                 messages: {
                     NgaySinh: { date: "Chưa đúng định dạng ngày sinh" },
                     MaSV: { required: "*", minlength: "Tối thiểu 5 kí tự" },
+                },
+                errorPlacement: function (error, element) {
+                    if ($(element).hasClass("security-code")) {
+                        $(element).next().after(error)
+                    }
+                    else {
+                        error.insertAfter(element);
+                    }
                 }
             });
         });

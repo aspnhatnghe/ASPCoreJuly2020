@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    @RenderSection("stylesheets", required: false)
+</head>
+<body>
+    <div class="container">
+        <header>#HEADER</header>
+        <nav>#MENU</nav>
+        @RenderSection("Breadcrum", required: false)
+        <div class="row">
+            <aside class="col-md-3">
+                #MENU LEFT
+                @RenderSection("LeftSection", required: false)
+            </aside>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+        </div>
+        <footer>Bản quyền thuộc</footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

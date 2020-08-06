@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "ShowProduct";
+    //Layout = "_FrontEnd";
+    //Layout = "_FrontEnd.cshtml";
+    Layout = "~/Views/Shared/_FrontEnd.cshtml";
+}
+
+<h1>ShowProduct</h1>
+
+@section LeftSection{
+    @await Html.PartialAsync("_Category",  new string[] { "Bia", "Nước ngọt", "Tivi", "Tủ lạnh"}) 
+    <div class="card">
+        <div class="card-header bg-primary">Mới</div>
+        <div class="card-body p-0">
+            <a class="list-group-item">Bia</a>
+            <a class="list-group-item">Nước</a>
+        </div>
+    </div>
+}

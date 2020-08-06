@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Buoi10_Validation_Layout.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Buoi10_Validation_Layout.Controllers
@@ -35,7 +37,37 @@ namespace Buoi10_Validation_Layout.Controllers
             return Json(true);
         }
 
+        
+        public IActionResult CheckSecurityCode(string MaBaoMat)
+        {
+            if(MaBaoMat == HttpContext.Session.GetString("SecurityCode"))
+            {
+                return Content("true");
+            }
+            return Content("false");
+        }
+
         public IActionResult Register()
+        {
+            var rd = new Random();
+            var pattern = @"0123456789qazwsxedcrfvtgbyhnujmiklop[]~!@#$%^&*()_+|";
+            var randomCode = new StringBuilder();
+            for(var i = 0; i < 6; i++)
+            {
+                randomCode.Append(pattern[rd.Next(0, pattern.Length)]);
+            }            
+            ViewBag.RandomCode = randomCode.ToString();
+            HttpContext.Session.SetString("SecurityCode", randomCode.ToString());
+            return View();
+        }
+
+        public IActionResult NoView()
+        {
+            return View();
+        }
+
+        [HttpGet("/Product")]
+        public IActionResult ShowProduct()
         {
             return View();
         }

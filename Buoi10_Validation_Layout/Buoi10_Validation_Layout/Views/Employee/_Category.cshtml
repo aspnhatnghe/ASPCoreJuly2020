@@ -1,0 +1,11 @@
+﻿@model IEnumerable<string>
+
+<div class="card">
+    <div class="card-header bg-primary">Mới</div>
+    <div class="card-body p-0">
+        @foreach (var item in Model)
+        {
+            <a class="list-group-item">@item</a>
+        }
+    </div>
+</div>
