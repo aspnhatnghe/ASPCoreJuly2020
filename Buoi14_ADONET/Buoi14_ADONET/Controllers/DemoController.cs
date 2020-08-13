@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Configuration;
 
 namespace Buoi14_ADONET.Controllers
 {
     public class DemoController : Controller
     {
+        public DemoController(IConfiguration configuration)
+        {
+            var chuoiKetNoi = configuration.GetConnectionString("Database1");
+        }
+
         string chuoiKetNoi = @"Data Source=.;Initial Catalog=eStore20;Integrated Security=True";
         public IActionResult GetData()
         {
@@ -45,6 +52,24 @@ namespace Buoi14_ADONET.Controllers
             connection.Close();
 
             return Content($"{result}");
+        }
+
+        public IActionResult DocJsonConfig()
+        {
+            var builder = 
+new ConfigurationBuilder()
+ .SetBasePath(Directory.GetCurrentDirectory())
+ .AddJsonFile("myappsettings.json");
+            var config = builder.Build();
+            var ten = config["Ten"];
+            var web = config["KhoaHoc:Web"];
+
+            var cisco = config["KhoaHoc:Mang:Cisco"];
+
+            var conStr1 = config["ConnectionStrings:Database1"];
+            var conStr2 = config.GetConnectionString("Database1");
+
+            return Json(true);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Buoi14_ADONET
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            var chuoiKetNoi = Configuration.GetConnectionString("Database1");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

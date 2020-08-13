@@ -1,0 +1,15 @@
+﻿{
+  "ConnectionStrings": {
+    "Database1": "Server=.; Database=eStore20; Integrated Security=True"
+  },
+  "Ten": "Nhất Nghệ",
+  "NamThanhLap": 2003,
+  "KhoaHoc": {
+    "Web": [ "ASP.NET Core", "Java", "PHP" ],
+    "Mang": {
+      "Cisco": "CCNA",
+      "MS": [ "MCSA", "MCSE", "MCP" ],
+      "Active": true
+    }
+  }
+}
