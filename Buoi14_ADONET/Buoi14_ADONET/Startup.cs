@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Buoi14_ADONET.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +26,17 @@ namespace Buoi14_ADONET
         {
             services.AddControllersWithViews();
             var chuoiKetNoi = Configuration.GetConnectionString("Database1");
+
+            //khai báo Service
+            services.AddTransient<ILoaiService, LoaiDrapper>();
+            //services.AddTransient<IDemo, DemoTransient>();
+            services.AddSingleton<IDemo, DemoSingleton>();
+            //services.AddScoped<IDemo, DemoScoped>();
+
+            services.AddSingleton<IDemoSingleton, DemoAll>();
+            services.AddScoped<IDemoScoped, DemoAll>();
+            services.AddTransient<IDemoTransient, DemoAll>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
