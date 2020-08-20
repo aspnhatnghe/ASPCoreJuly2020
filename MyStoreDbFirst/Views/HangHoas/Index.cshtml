@@ -76,9 +76,34 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.MaHh">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.MaHh">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.MaHh">Delete</a>
+                    <a asp-action="Delete" asp-route-id="@item.MaHh" class="btn btn-danger xoa-hanghoa" >Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".xoa-hanghoa").click(function (e) {
+                let link = $(this).attr("href");
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Chắc xóa không?',
+                    //text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Xóa ngay!'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = link;
+                    }
+                })
+            });
+        });
+    </script>
+}

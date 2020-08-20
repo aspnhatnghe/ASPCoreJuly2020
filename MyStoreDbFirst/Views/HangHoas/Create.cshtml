@@ -4,13 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Tạo mới hàng hóa</h1>
 
-<h4>HangHoa</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TenHh" class="control-label"></label>
@@ -19,7 +18,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MaLoai" class="control-label"></label>
-                <select asp-for="MaLoai" class ="form-control" asp-items="ViewBag.MaLoai"></select>
+                <select asp-for="MaLoai" class="form-control" asp-items="ViewBag.MaLoai"></select>
             </div>
             <div class="form-group">
                 <label asp-for="MoTaDonVi" class="control-label"></label>
@@ -28,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Hinh" class="control-label"></label>
-                <input asp-for="Hinh" class="form-control" />
+                <input asp-for="Hinh" type="file" class="form-control" />
                 <span asp-validation-for="Hinh" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,18 +36,18 @@
                 <span asp-validation-for="GiamGia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SoLanXem" class="control-label"></label>
-                <input asp-for="SoLanXem" class="form-control" />
+                <label asp-for="DonGia" class="control-label"></label>
+                <input asp-for="DonGia" class="form-control" />
                 <span asp-validation-for="SoLanXem" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MoTa" class="control-label"></label>
-                <input asp-for="MoTa" class="form-control" />
+                <textarea asp-for="MoTa" class="form-control"></textarea>
                 <span asp-validation-for="MoTa" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MaNcc" class="control-label"></label>
-                <select asp-for="MaNcc" class ="form-control" asp-items="ViewBag.MaNcc"></select>
+                <select asp-for="MaNcc" class="form-control" asp-items="ViewBag.MaNcc"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -63,4 +62,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#MoTa').summernote();
+        });
+    </script>
 }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyStoreDbFirst.Entities;
+using MyStoreDbFirst.Helpers;
 using MyStoreDbFirst.ViewModels;
 
 namespace MyStoreDbFirst.Controllers
@@ -71,7 +73,7 @@ namespace MyStoreDbFirst.Controllers
         public IActionResult Create()
         {
             ViewData["MaLoai"] = new SelectList(_context.Loai, "MaLoai", "TenLoai");
-            ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "MaNcc");
+            ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "TenCongTy");
             return View();
         }
 
@@ -80,16 +82,17 @@ namespace MyStoreDbFirst.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaHh,TenHh,MaLoai,MoTaDonVi,DonGia,Hinh,NgaySx,GiamGia,SoLanXem,MoTa,MaNcc")] HangHoa hangHoa)
+        public async Task<IActionResult> Create([Bind("MaHh,TenHh,MaLoai,MoTaDonVi,DonGia,NgaySx,GiamGia,SoLanXem,MoTa,MaNcc")] HangHoa hangHoa, IFormFile Hinh)
         {
             if (ModelState.IsValid)
             {
+                hangHoa.Hinh = FileHelper.UploadFileToFolder(Hinh, "HangHoa");
                 _context.Add(hangHoa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["MaLoai"] = new SelectList(_context.Loai, "MaLoai", "TenLoai", hangHoa.MaLoai);
-            ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "MaNcc", hangHoa.MaNcc);
+            ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "TenCongTy", hangHoa.MaNcc);
             return View(hangHoa);
         }
 
@@ -107,7 +110,7 @@ namespace MyStoreDbFirst.Controllers
                 return NotFound();
             }
             ViewData["MaLoai"] = new SelectList(_context.Loai, "MaLoai", "TenLoai", hangHoa.MaLoai);
-            ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "MaNcc", hangHoa.MaNcc);
+            ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "TenCongTy", hangHoa.MaNcc);
             return View(hangHoa);
         }
 
@@ -116,7 +119,7 @@ namespace MyStoreDbFirst.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaHh,TenHh,MaLoai,MoTaDonVi,DonGia,Hinh,NgaySx,GiamGia,SoLanXem,MoTa,MaNcc")] HangHoa hangHoa)
+        public async Task<IActionResult> Edit(int id, [Bind("MaHh,TenHh,MaLoai,MoTaDonVi,DonGia,Hinh,NgaySx,GiamGia,SoLanXem,MoTa,MaNcc")] HangHoa hangHoa, IFormFile myFile)
         {
             if (id != hangHoa.MaHh)
             {
@@ -127,6 +130,10 @@ namespace MyStoreDbFirst.Controllers
             {
                 try
                 {
+                    if(myFile != null)
+                    {
+                        hangHoa.Hinh = FileHelper.UploadFileToFolder(myFile, "HangHoa");
+                    }
                     _context.Update(hangHoa);
                     await _context.SaveChangesAsync();
                 }
@@ -144,7 +151,7 @@ namespace MyStoreDbFirst.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["MaLoai"] = new SelectList(_context.Loai, "MaLoai", "TenLoai", hangHoa.MaLoai);
-            ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "MaNcc", hangHoa.MaNcc);
+            ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "TenCongTy", hangHoa.MaNcc);
             return View(hangHoa);
         }
 
