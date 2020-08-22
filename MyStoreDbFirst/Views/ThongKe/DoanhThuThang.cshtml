@@ -1,8 +1,11 @@
-﻿
+﻿@model IEnumerable<MyStoreDbFirst.ViewModels.LoaiThongKe>
 @{
     ViewData["Title"] = "DoanhThuThang";
+    var dsTenLoai = Model.Select(lo => lo.Loai).ToList();
+    var dsDoanhThu = Model.Select(lo => lo.DoanhThu).ToList();
 }
-
+<div>@string.Join("', '", dsTenLoai)</div>
+<div>@string.Join(", ", dsDoanhThu)</div>
 <h1>Doanh Thu Tháng</h1>
 
 <canvas id="pie-chart" width="800" height="450"></canvas>
@@ -15,11 +18,13 @@
             new Chart(document.getElementById("pie-chart"), {
                 type: 'pie',
                 data: {
-                    labels: ['Mỹ', 'Úc', 'Nhật'],
+                    //labels: ['Mỹ', 'Úc', 'Nhật'],
+                    labels:['@Html.Raw(string.Join("', '", dsTenLoai))'],
                     datasets: [{
                         label: "Dân số (millions)",
-                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
-                        data: [2478, 5267, 734]
+                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "red", "green", "yellow"],
+                        //data: [2478, 5267, 734]
+                        data: [@string.Join(", ", dsDoanhThu)]
                     }]
                 },
                 options: {

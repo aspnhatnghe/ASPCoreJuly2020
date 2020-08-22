@@ -53,7 +53,14 @@ namespace MyStoreDbFirst.Controllers
 
         public IActionResult DoanhThuThang()
         {
-            return View();
+            var data = _context.ChiTietHd
+                .GroupBy(cthd => cthd.MaHhNavigation.MaLoaiNavigation.TenLoai)
+                .Select(g => new LoaiThongKe { 
+                    Loai = g.Key,
+                    DoanhThu = g.Sum(cthd => cthd.SoLuong * cthd.DonGia * (1 - cthd.GiamGia))
+                }).ToList();
+
+            return View(data);
         }
     }
 }
