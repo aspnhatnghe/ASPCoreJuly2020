@@ -21,6 +21,17 @@ namespace MyStoreDbFirst.Controllers
             _context = context;
         }
 
+        public IActionResult TimKiem()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult XuLyTimKiem()
+        {
+            return View();
+        }
+
         // GET: HangHoas
         public async Task<IActionResult> Index()
         {
