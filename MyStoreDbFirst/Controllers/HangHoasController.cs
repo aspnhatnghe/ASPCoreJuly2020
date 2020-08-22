@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,10 +16,12 @@ namespace MyStoreDbFirst.Controllers
     public class HangHoasController : Controller
     {
         private readonly eStore20Context _context;
+        private readonly IMapper _mapper;
 
-        public HangHoasController(eStore20Context context)
+        public HangHoasController(eStore20Context context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public IActionResult TimKiem()
@@ -27,9 +30,25 @@ namespace MyStoreDbFirst.Controllers
         }
 
         [HttpPost]
-        public IActionResult XuLyTimKiem()
+        public IActionResult XuLyTimKiem(string TuKhoa, double? GiaTu, double? GiaDen)
         {
-            return View();
+            var dsHangHoa = _context.HangHoa.AsQueryable();
+            if(!string.IsNullOrEmpty(TuKhoa))
+            {
+                dsHangHoa = dsHangHoa.Where(hh =>hh.TenHh.Contains(TuKhoa));
+            }
+            if(GiaTu.HasValue)
+            {
+                dsHangHoa = dsHangHoa.Where(hh => hh.DonGia.Value >= GiaTu);
+            }
+            if (GiaDen.HasValue)
+            {
+                dsHangHoa = dsHangHoa.Where(hh => hh.DonGia.Value <= GiaDen);
+            }
+
+            var data = _mapper.Map<List<HangHoaTimKiem>>(dsHangHoa.ToList());
+
+            return View("TimKiem", data);
         }
 
         // GET: HangHoas
@@ -203,3 +222,4 @@ namespace MyStoreDbFirst.Controllers
         }
     }
 }
+
