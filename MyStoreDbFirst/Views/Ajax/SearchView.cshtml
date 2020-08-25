@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "SearchView";
+}
+
+<h1>Search View</h1>
+
+<input id="Search" placeholder="Cần tìm" />
+<div id="result"></div>
+@section Scripts{ 
+<script>
+    $(document).ready(function () {
+        $("#Search").keyup(function () {
+            $.ajax({
+                url: "/Ajax/Search",
+                type: "POST",
+                data: {
+                    Keyword: $("#Search").val().trim()
+                },
+                success: function (responses) {
+                    $("#result").html(responses);
+                }
+            });
+        });
+    });
+</script>
+}
+

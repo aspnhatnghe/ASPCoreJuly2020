@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h2 id="myClock" class="text-danger"></h2>
+@section Scripts{ 
+<script>
+    $(document).ready(function () {
+        function layGio() {
+            $.ajax({
+                url: "/Ajax/ServerTime",
+                success: function (data) {
+                    $("#myClock").html(data);
+                },
+                error: function (xhr, status, opt) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(opt);
+                }
+            });
+        }
+        layGio();
+        setInterval(layGio, 1000);
+    });
+</script>
+}
+
