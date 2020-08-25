@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using MyStoreDbFirst.Entities;
 using MyStoreDbFirst.Helpers;
 using MyStoreDbFirst.ViewModels;
+using PagedList.Core;
 
 namespace MyStoreDbFirst.Controllers
 {
@@ -24,6 +25,18 @@ namespace MyStoreDbFirst.Controllers
         {
             _context = context;
             _mapper = mapper;
+        }
+
+        public IActionResult Paging(int page = 1)
+        {
+            //filter hàng hóa
+            var dsHangHoa = _context.HangHoa;
+
+            var result = _mapper.Map<List<HangHoaTimKiem>>(dsHangHoa.ToList()).AsQueryable();
+
+            PagedList<HangHoaTimKiem> data = new PagedList<HangHoaTimKiem>(result, page, ITEMS_PER_PAGE);            
+                        
+            return View(data);
         }
 
         public IActionResult PhanTrang(int page = 1)

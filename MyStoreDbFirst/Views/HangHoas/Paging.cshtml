@@ -1,0 +1,72 @@
+﻿@using PagedList.Core
+@model IPagedList<MyStoreDbFirst.ViewModels.HangHoaTimKiem>
+
+@{
+    ViewData["Title"] = "Paging";
+}
+
+<h1>Paging</h1>
+
+<pager class="pager-container" list="@Model" asp-action="Paging" asp-controller="HangHoas" />
+
+<table class="table">
+    @*<thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaHh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenHh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DonGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GiamGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GiaBan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgaySanXuat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Loai)
+                </th>
+                <th></th>
+            </tr>
+        </thead>*@
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenHh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiamGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiaBan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySanXuat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Loai)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
