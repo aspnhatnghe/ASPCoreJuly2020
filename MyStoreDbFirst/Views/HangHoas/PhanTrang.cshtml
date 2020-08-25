@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MyStoreDbFirst.ViewModels.HangHoaTimKiem>
+
+@{
+    ViewData["Title"] = "PhanTrang";
+}
+
+<h1>Phân Trang</h1>
+
+<div>Trang @ViewBag.TrangHienTai/@ViewBag.TongSoTrang</div>
+<ul class="pagination justify-content-center">
+    <li class="page-item @(ViewBag.TrangHienTai == 1 ? "disabled" : "")"><a class="page-link" asp-action="PhanTrang" asp-route-page="@(ViewBag.TrangHienTai - 1)">Previous</a></li>
+    @for (var pIndex = 1; pIndex <= ViewBag.TongSoTrang; pIndex++)
+    {
+        var activeClass = ViewBag.TrangHienTai == pIndex ? "active" : "";
+        <li class="page-item @activeClass"><a class="page-link" asp-action="PhanTrang" asp-route-page="@pIndex">@pIndex</a></li>
+    }
+    <li class="page-item @(ViewBag.TrangHienTai == ViewBag.TongSoTrang ? "disabled" : "")"><a class="page-link" action="PhanTrang" asp-route-page="@(ViewBag.TrangHienTai + 1)">Next</a></li>
+</ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaHh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenHh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiamGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiaBan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgaySanXuat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Loai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenHh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiamGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiaBan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySanXuat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Loai)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

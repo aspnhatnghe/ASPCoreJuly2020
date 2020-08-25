@@ -18,10 +18,29 @@ namespace MyStoreDbFirst.Controllers
         private readonly eStore20Context _context;
         private readonly IMapper _mapper;
 
+        public const int ITEMS_PER_PAGE = 5;
+
         public HangHoasController(eStore20Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
+        }
+
+        public IActionResult PhanTrang(int page = 1)
+        {
+            ViewBag.TrangHienTai = page;            
+
+            //filter data (nếu có)
+            var dsHangHoa = _context.HangHoa.AsQueryable();
+
+            ViewBag.TongSoTrang = Math.Ceiling(1.0 * dsHangHoa.Count() / ITEMS_PER_PAGE);
+
+            dsHangHoa = dsHangHoa.Skip((page -1 ) * ITEMS_PER_PAGE)
+                    .Take(ITEMS_PER_PAGE);
+
+            var data = _mapper.Map<List<HangHoaTimKiem>>(dsHangHoa.ToList());
+
+            return View(data);
         }
 
         public IActionResult TimKiem()
