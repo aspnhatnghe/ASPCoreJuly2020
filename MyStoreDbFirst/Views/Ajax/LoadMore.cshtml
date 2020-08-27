@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "LoadMore";
+}
+
+<h1>Hàng Hóa</h1>
+<div id="result" class="row"></div>
+<button type="button" id="buttonLoadMore">Tải thêm</button>
+@section Scripts{
+    <script>
+        var trangHienTai = 1;
+        function loadMore(page) {
+            $.ajax({
+                url: "/Ajax/LoadMore",
+                type: "POST",
+                data: { page: trangHienTai },
+                success: function (res) {
+                    //xử lý data
+                    $(res.data).each(function (idx, ele) {
+                        let hinh = $("<img />").attr("src", "/Hinh/HangHoa/" + ele.hinh);
+                        hinh.css({ "height": "80" });
+                        $("<div/>").addClass("col-3").append(hinh).appendTo($("#result"));
+                    });
+
+                    trangHienTai++;
+
+                    if (res.paging.totalPage < trangHienTai) {
+                        $("#buttonLoadMore").remove();
+                    }
+                }//end success
+            });
+            
+        }
+        $(document).ready(function () {
+            //load trang đầu
+            loadMore(trangHienTai);
+
+            $("#buttonLoadMore").click(function () {
+                loadMore(trangHienTai);
+            });
+        });
+    </script>
+}
+
