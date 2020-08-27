@@ -32,12 +32,29 @@
                 url: "/Ajax/JsonSearch",
                 type: "POST",
                 data: {
-                    Keyword: $("#TuKhoa").val().trim(),
+                    TuKhoa: $("#TuKhoa").val().trim(),
                     GiaTu: $("#GiaTu").val(),
                     GiaDen: $("#GiaDen").val()
                 },
                 success: function (response) {
+                    //console.log(response);
+                    //Xóa dữ liệu đang có
+                    $("#result").html("");
 
+                    //duyệt qua kết quả trả về để dựng thêm các dòng
+                    $(response).each(function (index, hangHoa) {
+                        let row = $("<tr/>");
+                        $("<td/>").html(index + 1).appendTo(row);
+
+                        let hinh = $("<img />").attr("src", "/Hinh/HangHoa/" + hangHoa.hinh);
+                        $("<td/>").append(hinh).appendTo(row);
+
+                        $("<td/>").html(hangHoa.tenHh).appendTo(row);
+                        $("<td/>").html(hangHoa.donGia).appendTo(row);
+                        $("<td/>").html(hangHoa.loai).appendTo(row);
+
+                        $("#result").append(row);
+                    });
                 },
                 error: function (xhr) {
                     console.log(xhr);

@@ -15,9 +15,35 @@ namespace MyStoreDbFirst.Controllers
         }
 
         #region [JSON Search]
+        [HttpGet]
         public IActionResult JsonSearch()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult JsonSearch(HangHoaJsonSearch model)
+        {
+            var data = _context.HangHoa.AsQueryable();
+            if (!string.IsNullOrEmpty(model.TuKhoa))
+            {
+                data = data.Where(hh => hh.TenHh.Contains(model.TuKhoa));
+            }
+            if (model.GiaTu.HasValue) {
+                data = data.Where(hh => hh.DonGia.Value >= model.GiaTu.Value);
+            }
+            if (model.GiaDen.HasValue)
+            {
+                data = data.Where(hh => hh.DonGia.Value >= model.GiaTu.Value);
+            }
+
+            var result = data.Select(hh=> new {
+                hh.MaHh,
+                hh.TenHh, hh.Hinh,
+                DonGia = hh.DonGia.Value, 
+                Loai = hh.MaLoaiNavigation.TenLoai
+            }).ToList();
+            return Json(result);
         }
         #endregion
 
