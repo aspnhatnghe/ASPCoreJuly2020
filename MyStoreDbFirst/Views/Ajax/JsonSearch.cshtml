@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "JsonSearch";
+}
+
+<h1>Json Search</h1>
+<fieldset>
+    Tìm theo tên: <input id="TuKhoa" /><br />
+    Giá từ: <input type="number" id="GiaTu" />
+    đến: <input type="number" id="GiaDen" />
+    <button id="TimKiem" type="button">Tìm kiếm</button>
+</fieldset>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Hình</th>
+            <th>Hàng hóa</th>
+            <th>Giá</th>
+            <th>Loại</th>
+        </tr>
+    </thead>
+    <tbody id="result"></tbody>
+</table>
+
+@section Scripts{ 
+<script>
+    $(document).ready(function () {
+        $("#TimKiem").click(function () {
+            $.ajax({
+                url: "/Ajax/JsonSearch",
+                type: "POST",
+                data: {
+                    Keyword: $("#TuKhoa").val().trim(),
+                    GiaTu: $("#GiaTu").val(),
+                    GiaDen: $("#GiaDen").val()
+                },
+                success: function (response) {
+
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+        });
+    });
+</script>
+}

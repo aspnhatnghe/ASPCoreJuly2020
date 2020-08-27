@@ -14,6 +14,13 @@ namespace MyStoreDbFirst.Controllers
             _context = context;
         }
 
+        #region [JSON Search]
+        public IActionResult JsonSearch()
+        {
+            return View();
+        }
+        #endregion
+
         public IActionResult ServerTime()
         {
             return Content(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt"));
