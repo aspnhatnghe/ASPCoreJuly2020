@@ -47,6 +47,8 @@
                         $("<td/>").html(index + 1).appendTo(row);
 
                         let hinh = $("<img />").attr("src", "/Hinh/HangHoa/" + hangHoa.hinh);
+                        //hinh.addClass("hinhCss");
+                        hinh.css({"height":"80"});
                         $("<td/>").append(hinh).appendTo(row);
 
                         $("<td/>").html(hangHoa.tenHh).appendTo(row);

@@ -14,6 +14,40 @@ namespace MyStoreDbFirst.Controllers
             _context = context;
         }
 
+        #region [Load More]
+        [HttpGet]
+        public IActionResult LoadMore()
+        {
+            return View();
+        }
+
+        const int SoSanPhamMoiTrang = 10;
+        [HttpPost]
+        public IActionResult LoadMore(int page = 1)
+        {
+            //Filter
+            var data = _context.HangHoa.AsQueryable();
+
+            var result = data.Skip((page - 1) * SoSanPhamMoiTrang).Take(SoSanPhamMoiTrang)
+                .Select(hh => new { 
+                    hh.MaHh, hh.TenHh,hh.Hinh, 
+                    DonGia = hh.DonGia.Value
+                });
+            var total = data.Count();
+            var pageCount = Convert.ToInt32(Math.Ceiling(1.0 * total / SoSanPhamMoiTrang));
+            return Json(new { 
+                data = result,
+                paging = new
+                {
+                    total = total,
+                    totalPage = pageCount,
+                    currentPage = page
+                }
+            });
+        }
+        #endregion
+
+
         #region [JSON Search]
         [HttpGet]
         public IActionResult JsonSearch()
