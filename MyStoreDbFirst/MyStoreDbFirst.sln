@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStoreDbFirst", "MyStoreDbFirst.csproj", "{3F70EB26-C03F-4FD0-8DE0-12AE17F02BAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoIdentityDatabase", "..\DemoIdentityDatabase\DemoIdentityDatabase.csproj", "{848483FE-0A1E-4505-B8B6-A3563046C35B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3F70EB26-C03F-4FD0-8DE0-12AE17F02BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F70EB26-C03F-4FD0-8DE0-12AE17F02BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F70EB26-C03F-4FD0-8DE0-12AE17F02BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{848483FE-0A1E-4505-B8B6-A3563046C35B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{848483FE-0A1E-4505-B8B6-A3563046C35B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{848483FE-0A1E-4505-B8B6-A3563046C35B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{848483FE-0A1E-4505-B8B6-A3563046C35B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
