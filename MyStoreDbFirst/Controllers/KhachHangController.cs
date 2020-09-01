@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using MyStoreDbFirst.Entities;
+using MyStoreDbFirst.Models;
+using MyStoreDbFirst.ViewModels;
 
 namespace MyStoreDbFirst.Controllers
 {
@@ -14,14 +22,56 @@ namespace MyStoreDbFirst.Controllers
     public class KhachHangController : ControllerBase
     {
         private readonly eStore20Context _context;
-
-        public KhachHangController(eStore20Context context)
+        private readonly IConfiguration _config;
+        public KhachHangController(eStore20Context context, IConfiguration config)
         {
             _context = context;
+            _config = config;
+        }
+
+        //api/KhachHang/Login
+        [HttpPost("Login")]
+        [AllowAnonymous]
+        public IActionResult SignIn(LoginVM model)
+        {
+            var kh = _context.KhachHang.SingleOrDefault(kh => kh.MaKh == model.UserName && kh.MatKhau == model.Password);
+            if(kh == null)
+            {
+                return Ok(new ApiResultModel { 
+                    Success = false,
+                    Message = "Invalid username/password"
+                });
+            }
+
+            var claims = new Claim[]
+            {
+                new Claim(ClaimTypes.Name, kh.HoTen),
+                new Claim(ClaimTypes.Email, kh.Email),
+                new Claim("MaKH", kh.MaKh)
+            };
+
+            var secretKey = _config["AppSettings:SecretKey"];
+            var secretKeyBytes = Encoding.UTF8.GetBytes(secretKey);
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenInfo = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddMinutes(20),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKeyBytes), SecurityAlgorithms.HmacSha256)
+            };
+
+            var token = tokenHandler.CreateToken(tokenInfo);
+
+            return Ok(new ApiResultModel { 
+                Success = true,
+                Data = tokenHandler.WriteToken(token)
+            });
         }
 
         // GET: api/KhachHang
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<KhachHang>>> GetKhachHang()
         {
             return await _context.KhachHang.ToListAsync();
