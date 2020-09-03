@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStoreDbFirst", "MyStoreDbFirst.csproj", "{3F70EB26-C03F-4FD0-8DE0-12AE17F02BAF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoReactJs", "..\..\DemoReactJs\DemoReactJs\DemoReactJs.csproj", "{D360B37D-BD79-4AC1-85F9-26797BFB8B03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoReactJs", "..\DemoReactJs\DemoReactJs\DemoReactJs.csproj", "{E6727A03-8AAF-4592-A86B-78A75304DE3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{3F70EB26-C03F-4FD0-8DE0-12AE17F02BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F70EB26-C03F-4FD0-8DE0-12AE17F02BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F70EB26-C03F-4FD0-8DE0-12AE17F02BAF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D360B37D-BD79-4AC1-85F9-26797BFB8B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D360B37D-BD79-4AC1-85F9-26797BFB8B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D360B37D-BD79-4AC1-85F9-26797BFB8B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D360B37D-BD79-4AC1-85F9-26797BFB8B03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6727A03-8AAF-4592-A86B-78A75304DE3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6727A03-8AAF-4592-A86B-78A75304DE3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6727A03-8AAF-4592-A86B-78A75304DE3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6727A03-8AAF-4592-A86B-78A75304DE3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
