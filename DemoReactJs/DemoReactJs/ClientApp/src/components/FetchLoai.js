@@ -40,7 +40,7 @@ export class FetchLoai extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : FetchData.renderForecastsTable(this.state.categories);
+            : FetchLoai.renderForecastsTable(this.state.categories);
 
         return (
             <div>
